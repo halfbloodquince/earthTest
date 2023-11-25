@@ -53,29 +53,23 @@ const coords = {
 };
 console.log(Object.keys(coords).length);
 
-for (let i = 0; i <= Object.keys(coords).length; i++) {
-  let pinMesh = new THREE.Mesh(
-    new THREE.SphereGeometry(0.005, 20, 20),
-    new THREE.MeshBasicMaterial({ color: 0xffaa00 })
-  );
+let pinMesh = new THREE.Mesh(
+  new THREE.SphereGeometry(0.005, 20, 20),
+  new THREE.MeshBasicMaterial({ color: 0xffaa00 })
+);
 
-  let city = Object.keys(coords)[i];
+let lat = coords.sydney[0];
+let long = coords.sydney[1];
 
-  console.log(city);
+let latitutde = (lat * Math.PI) / 180;
+let longitude = (long * Math.PI) / 180;
 
-  let lat = coords[String(city)][0];
-  let long = coords[String(city)][1];
+let x = Math.cos(latitutde) * Math.cos(longitude);
+let y = Math.sin(latitutde);
+let z = Math.cos(latitutde) * Math.sin(longitude);
 
-  let latitutde = (lat * Math.PI) / 180;
-  let longitude = (long * Math.PI) / 180;
-
-  let x = Math.cos(latitutde) * Math.cos(longitude);
-  let y = Math.sin(latitutde);
-  let z = Math.cos(latitutde) * Math.sin(longitude);
-
-  pinMesh.position.set(x, y, z);
-  scene.add(pinMesh);
-}
+pinMesh.position.set(x, y, z);
+scene.add(pinMesh);
 
 /**
  * Sizes
