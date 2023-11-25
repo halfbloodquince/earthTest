@@ -45,31 +45,37 @@ scene.add(mesh);
 
 //Pin
 
-const coords = {
-  london: [51.5072, 0.1276],
-  berlin: [52.5206, -13.404],
-  la: [34.0549, 119.2426],
-  sydney: [-33.8688, -151.2093],
-};
+const coords = [
+  { london: [51.5072, 0.1276] },
+  { berlin: [52.5206, -13.404] },
+  { la: [34.0549, 119.2426] },
+  { sydney: [-33.8688, -151.2093] },
+];
 console.log(Object.keys(coords).length);
 
-let pinMesh = new THREE.Mesh(
-  new THREE.SphereGeometry(0.005, 20, 20),
-  new THREE.MeshBasicMaterial({ color: 0xffaa00 })
-);
+coords.forEach((country) => {
+  let pinMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(0.005, 20, 20),
+    new THREE.MeshBasicMaterial({ color: 0xffaa00 })
+  );
+  let coordinates = country[Object.keys(country)[0]];
+  console.log(coordinates);
+  let lat = coordinates[0];
+  let long = coordinates[1];
 
-let lat = coords.sydney[0];
-let long = coords.sydney[1];
+  console.log(lat);
 
-let latitutde = (lat * Math.PI) / 180;
-let longitude = (long * Math.PI) / 180;
+  let latitutde = (lat * Math.PI) / 180;
+  let longitude = (long * Math.PI) / 180;
 
-let x = Math.cos(latitutde) * Math.cos(longitude);
-let y = Math.sin(latitutde);
-let z = Math.cos(latitutde) * Math.sin(longitude);
+  let x = Math.cos(latitutde) * Math.cos(longitude);
+  let y = Math.sin(latitutde);
+  let z = Math.cos(latitutde) * Math.sin(longitude);
+  console.log(x, y, z);
 
-pinMesh.position.set(x, y, z);
-scene.add(pinMesh);
+  pinMesh.position.set(x, y, z);
+  scene.add(pinMesh);
+});
 
 /**
  * Sizes
