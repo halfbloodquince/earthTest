@@ -4,7 +4,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 //Texutures
 
 const textureLoader = new THREE.TextureLoader();
-const earthTexture = textureLoader.load("/textures/8k_earth_daymap.jpg");
+const earthTexture = textureLoader.load("/textures/8k_earth_nightmap.jpg");
 const earthNormal = textureLoader.load("/textures/8k_earth_normal_map.jpg");
 console.log(earthTexture);
 /**
@@ -50,13 +50,14 @@ const coords = [
   { berlin: [52.5206, -13.404] },
   { la: [34.0549, 119.2426] },
   { sydney: [-33.8688, -151.2093] },
+  { marl: [51.6591, -7.106] },
 ];
 console.log(Object.keys(coords).length);
 
 coords.forEach((country) => {
   let pinMesh = new THREE.Mesh(
     new THREE.SphereGeometry(0.005, 20, 20),
-    new THREE.MeshBasicMaterial({ color: 0xffaa00 })
+    new THREE.MeshBasicMaterial({ color: 0x00ff00 })
   );
   let coordinates = country[Object.keys(country)[0]];
   console.log(coordinates);
