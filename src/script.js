@@ -4,9 +4,9 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 //Texutures
 
 const textureLoader = new THREE.TextureLoader();
-const earthTexture = textureLoader.load("/textures/8k_earth_nightmap.jpg");
+const dayTexture = textureLoader.load("/textures/8k_earth_daymap.jpg");
+const nightTexture = textureLoader.load("/textures/8k_earth_nightmap.jpg");
 const earthNormal = textureLoader.load("/textures/8k_earth_normal_map.jpg");
-console.log(earthTexture);
 /**
  * Base
  */
@@ -36,7 +36,7 @@ scene.add(pointLight);
 const geometry = new THREE.SphereGeometry(1, 64, 32);
 // const material = new THREE.MeshBasicMaterial({ map: texture });
 const material = new THREE.MeshStandardMaterial({
-  map: earthTexture,
+  map: nightTexture,
 });
 material.normalMap = earthNormal;
 material.normalScale.set(1, 1);
@@ -51,6 +51,7 @@ const coords = [
   { la: [34.0549, 119.2426] },
   { sydney: [-33.8688, -151.2093] },
   { marl: [51.6591, -7.106] },
+  { portRush: [55.2042, 6.6527] },
 ];
 console.log(Object.keys(coords).length);
 
